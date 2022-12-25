@@ -1,7 +1,7 @@
 from uuid import uuid4
 
 from django.contrib.auth.base_user import AbstractBaseUser
-from django.contrib.auth.models import PermissionsMixin
+from django.contrib.auth.models import PermissionsMixin, UserManager
 from django.contrib.auth.validators import ASCIIUsernameValidator
 from django.db import models
 
@@ -19,8 +19,8 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "unique": ("A user with that username already exists."),
         },
     )
-    first_name = models.CharField(max_length=64, blank=True)
-    last_name = models.CharField(max_length=64, blank=True)
+    firstname = models.CharField(max_length=64, blank=True)
+    lastname = models.CharField(max_length=64, blank=True)
     email = models.CharField(
         max_length=128,
         unique=True,
@@ -28,6 +28,23 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "unique": ("A user with that email address already exists."),
         },
     )
+
+    is_staff = models.BooleanField(
+        ("staff status"),
+        default=False,
+        help_text=("Designates whether the user can log into this admin site."),
+    )
+    is_active = models.BooleanField(
+        ("active"),
+        default=True,
+        help_text=(
+            "Designates whether this user should be treated as active. \
+            Unselect this instead of deleting accounts."
+        ),
+    )
+    date_joined = models.DateTimeField(("date joined"), auto_now_add=True)
+
+    objects = UserManager()
 
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "username"

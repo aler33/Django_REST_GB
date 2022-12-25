@@ -8,7 +8,7 @@ class UsersModelSerializer(HyperlinkedModelSerializer):
         model = CustomUser
         fields = (
             "username",
-            "first_name",
-            "last_name",
+            "firstname",
+            "lastname",
             "email",
         )
