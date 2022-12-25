@@ -28,3 +28,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin):
             "unique": ("A user with that email address already exists."),
         },
     )
+
+    EMAIL_FIELD = "email"
+    USERNAME_FIELD = "username"
+    REQUIRED_FIELDS = ["email"]
