@@ -1,0 +1,22 @@
+{
+  "name": "django_rest_gb",
+  "version": "1.0.0",
+  "description": "Учебный проект Django REST framework.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aler33/Django_REST_GB.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/aler33/Django_REST_GB/issues"
+  },
+  "homepage": "https://github.com/aler33/Django_REST_GB#readme",
+  "dependencies": {
+    "create-react-app": "^5.0.1"
+  }
+}
