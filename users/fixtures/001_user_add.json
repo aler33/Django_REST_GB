@@ -1,0 +1,74 @@
+[
+    {
+        "model": "users.CustomUser",
+        "pk": 1,
+        "fields": {
+            "password": "123",
+            "last_login": "2022-01-01T01:02:03.044Z",
+            "is_superuser": true,
+            "username": "admin1",
+            "firstname": "",
+            "lastname": "",
+            "email": "admin@local.ru",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-12-12T00:01:02.033Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.CustomUser",
+        "pk": 2,
+        "fields": {
+            "password": "123",
+            "last_login": "2022-01-01T01:02:03.044Z",
+            "is_superuser": false,
+            "username": "user1",
+            "firstname": "",
+            "lastname": "",
+            "email": "user1@local.ru",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-12-12T00:01:02.033Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.CustomUser",
+        "pk": 3,
+        "fields": {
+            "password": "123",
+            "last_login": "2022-01-01T01:02:03.044Z",
+            "is_superuser": false,
+            "username": "user2",
+            "firstname": "",
+            "lastname": "",
+            "email": "user2@local.ru",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-12-12T00:01:02.033Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    },
+    {
+        "model": "users.CustomUser",
+        "pk": 4,
+        "fields": {
+            "password": "123",
+            "last_login": "2022-01-01T01:02:03.044Z",
+            "is_superuser": false,
+            "username": "user3",
+            "firstname": "",
+            "lastname": "",
+            "email": "user3@local.ru",
+            "is_staff": true,
+            "is_active": true,
+            "date_joined": "2022-12-12T00:01:02.033Z",
+            "groups": [],
+            "user_permissions": []
+        }
+    }
+]
