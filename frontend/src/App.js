@@ -33,7 +33,7 @@ class App extends React.Component {
     )
   }
 
-  render () {
+  render () {    
     return (
       <div>
         <UserList users={this.state.users} />
