@@ -1,4 +1,4 @@
-__all__ = ["Project"]
+__all__ = ["Todo"]
 
 
 from django.db import models
