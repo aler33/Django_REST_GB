@@ -12,7 +12,6 @@ class ProjectFilter(filters.FilterSet):
 
 
 class TodoFilter(filters.FilterSet):
-    #  project = filters.CharFilter(lookup_expr='contains')
      text = filters.CharFilter(lookup_expr='contains')
      created = filters.DateFromToRangeFilter(widget=RangeWidget(attrs={'placeholder': 'YYYY-MM-DD'}))
      class Meta:
