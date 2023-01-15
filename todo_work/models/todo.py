@@ -12,4 +12,4 @@ class Todo(models.Model):
     created = models.DateTimeField(auto_now_add=True, editable=False)
     updated = models.DateTimeField(auto_now=True, editable=False)
     user = models.ForeignKey(CustomUser, models.PROTECT)
-    is_active = models.BooleanField(default=False)
+    is_active = models.BooleanField(default=True)
