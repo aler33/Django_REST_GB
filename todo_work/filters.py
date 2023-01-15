@@ -1,4 +1,5 @@
 from django_filters import rest_framework as filters
+from django_filters.widgets import RangeWidget
 from .models import Project, Todo
 
 
@@ -13,7 +14,7 @@ class ProjectFilter(filters.FilterSet):
 class TodoFilter(filters.FilterSet):
     #  project = filters.CharFilter(lookup_expr='contains')
      text = filters.CharFilter(lookup_expr='contains')
-
+     created = filters.DateFromToRangeFilter(widget=RangeWidget(attrs={'placeholder': 'YYYY-MM-DD'}))
      class Meta:
         model = Todo
-        fields = ['text', 'project']
+        fields = ['text', 'project', 'created']
