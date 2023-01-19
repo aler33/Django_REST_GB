@@ -3,7 +3,6 @@ import { useParams } from 'react-router-dom'
 
 
 const TodoItem = ({todo}) => {
-    console.log('todo', todo, TodoItem)
     return (
         <tr>
             <td>
@@ -30,11 +29,7 @@ const TodoItem = ({todo}) => {
 
 const TodoUser = ({items}) => {
     let { id } = useParams();
-    // console.log(id)
     let filtered_items = items.filter((item) => item.user.id == id)
-    console.log(items)
-    // let filtered_items = items.filter((item => item.user.includes(parseInt(id))))
-    console.log('filtered_items', filtered_items)
     return (
         <table>
             <tr>

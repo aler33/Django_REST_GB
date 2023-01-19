@@ -7,6 +7,8 @@ import ProjectList from './components/Project.js';
 import TodoUser from './components/TodoUser.js';
 import axios from 'axios'
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
+import './bootstrap.min.css';
+
 
 const NotFound404 = ({ location }) => {
   return (
