@@ -12,7 +12,7 @@ const TodoItem = ({todo}) => {
                 {todo.text}
             </td>
             <td>
-                {todo.user.username}
+                {todo.user}
             </td>
             <td>
                 {todo.created}
@@ -29,7 +29,7 @@ const TodoItem = ({todo}) => {
 
 const TodoUser = ({items}) => {
     let { id } = useParams();
-    let filtered_items = items.filter((item) => item.user.id == id)
+    let filtered_items = items.filter((item) => item.user == id)
     return (
         <table>
             <tr>
@@ -52,7 +52,7 @@ const TodoUser = ({items}) => {
                 Is_active
             </th>
             </tr>
-            {filtered_items.map((todo) => <TodoItem todo={todo} />)}
+            {filtered_items.map((todo) => <TodoItem todo={todo}/>)}
         </table>
     )
 }

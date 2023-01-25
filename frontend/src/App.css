@@ -36,3 +36,10 @@
     transform: rotate(360deg);
   }
 }
+
+table {
+  width: 800px; /* Ширина таблицы */
+  border: 1px solid green; /* Рамка вокруг таблицы */
+  margin: auto; /* Выравниваем таблицу по центру окна  */
+  margin-top: 20px;
+ }

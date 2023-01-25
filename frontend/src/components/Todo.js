@@ -2,6 +2,7 @@ import React from 'react'
 
 
 const TodoItem = ({todo}) => {
+    console.log(todo)
     return (
         <tr>
             <td>
@@ -11,7 +12,8 @@ const TodoItem = ({todo}) => {
                 {todo.text}
             </td>
             <td>
-                {todo.user.username}
+                {/* {todo.user.username} */}
+                {todo.user}
             </td>
             <td>
                 {todo.created}

@@ -1,13 +1,13 @@
 import React from 'react'
-import { Link } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 
 const ProjectItem = ({project}) => {
     return (
+        
         <tr>
             <td>
-                {/* {project.name} */}
-                <Link to={`project/${project.name}`}>{project.name}</Link>
+                {project.name}                
             </td>
             <td>
                 {project.url}
@@ -19,8 +19,13 @@ const ProjectItem = ({project}) => {
     )
 }
 
-const TodoProjectList = ({projects}) => {
+const ProjectOne = ({items}) => {
+    let { name } = useParams();
+    let filtered_items = items.filter((item) => item.name == name)
     return (
+        <div>
+            <h1>Информация по проекту</h1>
+            <h1>{name}</h1>
         <table>
             <th>
                 Name
@@ -31,8 +36,10 @@ const TodoProjectList = ({projects}) => {
             <th>
                 Users
             </th>
-            {projects.map((project) => <ProjectItem project={project} />)}
+            {filtered_items.map((project) => <ProjectItem project={project}/>)}
         </table>
+        </div>
     )
 }
-export default TodoProjectList
+
+export default ProjectOne

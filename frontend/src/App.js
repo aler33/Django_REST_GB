@@ -5,6 +5,7 @@ import UserList from './components/User.js'
 import TodoList from './components/Todo.js'
 import ProjectList from './components/Project.js';
 import TodoUser from './components/TodoUser.js';
+import ProjectOne from './components/ProjectOne.js';
 import axios from 'axios'
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import './bootstrap.min.css';
@@ -76,6 +77,7 @@ class App extends React.Component {
             <Route exact path='/todo' component={() => <TodoList todos={this.state.todos} />} />
             <Route exact path='/project' component={() => <ProjectList projects={this.state.projects} />} />
             <Route path='/user/:id'> <TodoUser items={this.state.todos} /></Route>
+            <Route path='/project/:name'> <ProjectOne items={this.state.projects} /></Route>
             <Redirect from='/user' to='/' />
             <Route component={NotFound404} />
           </Switch>
