@@ -9,6 +9,7 @@ import ProjectOne from './components/ProjectOne.js';
 import axios from 'axios'
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import './bootstrap.min.css';
+import LoginForm from './components/Auth.js';
 
 
 const NotFound404 = ({ location }) => {
@@ -70,12 +71,14 @@ class App extends React.Component {
               <button type="button" ><Link class="btn btn-primary" to='/'>Users</Link></button>
               <button type="button" ><Link class="btn btn-primary" to='/todo'>Todo</Link></button>
               <button type="button" ><Link class="btn btn-primary" to='/project'>Project</Link></button>
+              <button type="button" ><Link class="btn btn-primary" to='/login'>Login</Link></button>
             </div>
           </nav>
           <Switch>
             <Route exact path='/' component={() => <UserList users={this.state.users} />} />
             <Route exact path='/todo' component={() => <TodoList todos={this.state.todos} />} />
             <Route exact path='/project' component={() => <ProjectList projects={this.state.projects} />} />
+            <Route exact path='/login' component={() => <LoginForm />} />
             <Route path='/user/:id'> <TodoUser items={this.state.todos} /></Route>
             <Route path='/project/:name'> <ProjectOne items={this.state.projects} /></Route>
             <Redirect from='/user' to='/' />
