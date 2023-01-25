@@ -30,6 +30,7 @@ const TodoItem = ({todo}) => {
 
 const TodoList = ({todos}) => {
     return (
+        <div><h2>Todo</h2>
         <table>
             <th>
                 Project
@@ -51,6 +52,7 @@ const TodoList = ({todos}) => {
             </th>
             {todos.map((todo) => <TodoItem todo={todo} />)}
         </table>
+        </div>
     )
 }
 export default TodoList

@@ -21,18 +21,21 @@ const ProjectItem = ({project}) => {
 
 const TodoProjectList = ({projects}) => {
     return (
-        <table>
-            <th>
-                Name
-            </th>
-            <th>
-                Url
-            </th>
-            <th>
-                Users
-            </th>
-            {projects.map((project) => <ProjectItem project={project} />)}
-        </table>
+        <div>
+            <h2>Projects</h2>
+            <table>
+                <th>
+                    Name
+                </th>
+                <th>
+                    Url
+                </th>
+                <th>
+                    Users
+                </th>
+                {projects.map((project) => <ProjectItem project={project} />)}
+            </table>
+        </div>
     )
 }
 export default TodoProjectList
