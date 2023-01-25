@@ -10,6 +10,7 @@ import axios from 'axios'
 import { BrowserRouter, Route, Link, Switch, Redirect } from 'react-router-dom'
 import './bootstrap.min.css';
 import LoginForm from './components/Auth.js';
+import Cookies from 'universal-cookie';
 
 
 const NotFound404 = ({ location }) => {
@@ -26,11 +27,40 @@ class App extends React.Component {
     this.state = {
       'users': [],
       'todos': [],
-      'projects': []
+      'projects': [],
+      'token': ''
     }
   }
 
-  componentDidMount() {
+  set_token(token) {
+    const cookies = new Cookies()
+    cookies.set('token', token)
+    this.setState({'token': token})
+  }
+
+  is_authenticated() {
+    return this.state.token != ''
+  }
+    
+  logout() {
+    this.set_token('')
+  }
+
+  get_token_from_storage() {
+    const cookies = new Cookies()
+    const token = cookies.get('token')
+    this.setState({'token': token})
+  }
+
+  get_token(username, password) {
+    axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username,
+    password: password})
+    .then(response => {
+      this.set_token(response.data['token'])
+    }).catch(error => alert('Неверный логин или пароль'))
+  }
+
+  load_data() {
     axios.get('http://127.0.0.1:8000/api/users')
       .then(response => {
         const users = response.data.results
@@ -62,12 +92,10 @@ class App extends React.Component {
       }).catch(error => console.log(error))
   }
 
-  get_token(username, password) {
-    axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username,
-    password: password})
-    .then(response => {
-      console.log(response.data)
-    }).catch(error => alert('Неверный логин или пароль'))
+
+  componentDidMount() {
+    this.get_token_from_storage()
+    this.load_data()
   }
 
   render() {
@@ -76,10 +104,12 @@ class App extends React.Component {
         <BrowserRouter>
           <nav>
             <div class="btn-group" role="group" aria-label="Vertical button group">
+              {/* <button type="button" ><Link class="btn btn-primary" to='/'>Users</Link></button> */}
               <button type="button" ><Link class="btn btn-primary" to='/'>Users</Link></button>
               <button type="button" ><Link class="btn btn-primary" to='/todo'>Todo</Link></button>
               <button type="button" ><Link class="btn btn-primary" to='/project'>Project</Link></button>
-              <button type="button" ><Link class="btn btn-primary" to='/login'>Login</Link></button>
+              {this.is_authenticated() ? <button type="button" onClick={()=>this.logout()} class="btn btn-primary" >Logout</button> : <button type="button" ><Link class="btn btn-primary" to='/login'>Login</Link></button>}
+              {/* <button type="button" ><Link class="btn btn-primary" to='/login'>Login</Link></button> */}
             </div>
           </nav>
           <Switch>
