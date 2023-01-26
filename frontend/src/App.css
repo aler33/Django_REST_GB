@@ -43,3 +43,9 @@ table {
   margin: auto; /* Выравниваем таблицу по центру окна  */
   margin-top: 20px;
  }
+
+ h4 {
+  margin-right: 50px;
+  padding-top: 10px;
+  color: blue;
+ }

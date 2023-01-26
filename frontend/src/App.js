@@ -28,13 +28,16 @@ class App extends React.Component {
       'users': [],
       'todos': [],
       'projects': [],
-      'token': ''
+      'token': '',
+      'login': ''
     }
   }
 
   set_token(token) {
     const cookies = new Cookies()
     cookies.set('token', token)
+    const logi = localStorage.getItem("login")
+    this.setState({'login': logi})
     this.setState({'token': token}, ()=>this.load_data())
   }
 
@@ -44,11 +47,15 @@ class App extends React.Component {
     
   logout() {
     this.set_token('')
+    localStorage.setItem("login", "")
+    this.setState({'login': ""}) // TEST LOGIN
   }
 
   get_token_from_storage() {
     const cookies = new Cookies()
     const token = cookies.get('token')
+    const logi = localStorage.getItem("login")
+    this.setState({'login': logi})
     this.setState({'token': token}, ()=>this.load_data())
   }
 
@@ -56,6 +63,8 @@ class App extends React.Component {
     axios.post('http://127.0.0.1:8000/api-token-auth/', {username: username,
     password: password})
     .then(response => {
+      this.setState({'login': username}) // TEST LOGIN
+      localStorage.setItem("login", username);
       this.set_token(response.data['token'])
     }).catch(error => alert('Неверный логин или пароль'))
   }
@@ -118,14 +127,14 @@ class App extends React.Component {
       <div className="App">
         <BrowserRouter>
           <nav>
-            <div class="btn-group" role="group" aria-label="Vertical button group">
-              {/* <button type="button" ><Link class="btn btn-primary" to='/'>Users</Link></button> */}
+          <h4 align="right">{this.state.login}</h4>
+            <div class="btn-group" role="group" aria-label="Vertical button group">              
               <button type="button" ><Link class="btn btn-primary" to='/'>Users</Link></button>
               <button type="button" ><Link class="btn btn-primary" to='/todo'>Todo</Link></button>
               <button type="button" ><Link class="btn btn-primary" to='/project'>Project</Link></button>
               {this.is_authenticated() ? <button type="button" onClick={()=>this.logout()} class="btn btn-primary" >Logout</button> : <button type="button" ><Link class="btn btn-primary" to='/login'>Login</Link></button>}
-              {/* <button type="button" ><Link class="btn btn-primary" to='/login'>Login</Link></button> */}
             </div>
+            
           </nav>
           <Switch>
             <Route exact path='/' component={() => <UserList users={this.state.users} />} />
