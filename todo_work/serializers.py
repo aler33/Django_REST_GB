@@ -4,7 +4,7 @@ from users.serializers import UsersModelSerializer
 
 
 class TodoSerializer(ModelSerializer):
-    user = UsersModelSerializer()
+    # user = UsersModelSerializer()
     class Meta:
         model = Todo
         fields = "__all__"
