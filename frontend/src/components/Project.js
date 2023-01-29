@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 
 const ProjectItem = ({project}) => {
+    console.log(project)
     return (
         <tr>
             <td>
@@ -13,6 +14,7 @@ const ProjectItem = ({project}) => {
                 {project.url}
             </td>
             <td>
+                {project.users.map(item => item)}
                 {project.users.map(item => item.username)}
             </td>
         </tr>
@@ -20,6 +22,7 @@ const ProjectItem = ({project}) => {
 }
 
 const TodoProjectList = ({projects}) => {
+    console.log(projects)
     return (
         <div>
             <h2>Projects</h2>

@@ -21,7 +21,8 @@ class ProjectModelViewSet(ModelViewSet):
 
 class TodoModelViewSet(ModelViewSet):
     queryset = Todo.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     serializer_class = TodoSerializer
     pagination_class = TodoLimitOffsetPagination
     filterset_class = TodoFilter    

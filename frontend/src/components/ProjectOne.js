@@ -13,7 +13,8 @@ const ProjectItem = ({project}) => {
                 {project.url}
             </td>
             <td>
-                {project.users.map(item => item.username)}
+                {/* {project.users.map(item => item.username)} */}
+                {project.users.map(item => item)}
             </td>
         </tr>
     )
