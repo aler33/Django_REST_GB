@@ -139,7 +139,7 @@ class App extends React.Component {
           <Switch>
             <Route exact path='/' component={() => <UserList users={this.state.users} />} />
             <Route exact path='/todo' component={() => <TodoList todos={this.state.todos} />} />
-            <Route exact path='/project' component={() => <ProjectList projects={this.state.projects} />} />
+            <Route exact path='/project' component={() => <ProjectList projects={this.state.projects} users={this.state.users} />} />
             <Route exact path='/login' component={() => <LoginForm get_token={(username, password) => this.get_token(username, password)} />} />
             <Route path='/user/:id'> <TodoUser items={this.state.todos} /></Route>
             <Route path='/project/:name'> <ProjectOne items={this.state.projects} /></Route>
