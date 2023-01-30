@@ -13,6 +13,7 @@ from users.models import CustomUser
 User = get_user_model()
 
 class TestTodoViewSet(TestCase):
+
     def test_get_list(self):
         factory = APIRequestFactory()
         request = factory.get('/api/project/')
@@ -72,3 +73,32 @@ class TestTodoViewSet(TestCase):
         self.assertEqual(user.username, 'user5')
         client.logout()
 
+
+class TestProjectViewSet(APITestCase):
+
+    def test_get_list(self):
+        response = self.client.get('/api/project/')
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+
+    def test_edit_admin(self):
+        user1 = User.objects.create(id='00000000-0000-0000-0000-000000000006',
+        username='user6',
+        email='user6@local.ru')
+        project = Project.objects.create(id=22, name="test_2",url= "https://www.test1.com/test2.html")
+        project.users.add(user1)
+        admin = User.objects.create_superuser('admin', 'admin@test.com', '123')
+        self.client.login(username='admin', password='123')
+        response = self.client.put(f'/api/project/{project.id}/', {"users":'00000000-0000-0000-0000-000000000006',"name":"new_test_1","url":"https://www.test1.com/test.html"})
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        project = Project.objects.get(id=project.id)
+        self.assertEqual(project.name, "new_test_1")
+
+    def test_edit_mixer(self):
+        todo = mixer.blend(Todo)
+        admin = User.objects.create_superuser('admin', 'admin@test.com', '123')
+        self.client.login(username='admin', password='123')
+        response = self.client.put(f'/api/todo/{todo.id}/', {"text":"test number 1","project":todo.project_id,"user":todo.user_id})
+        print(response)
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        todo = Todo.objects.get(id=todo.id)
+        self.assertEqual(todo.text, 'test number 1')
