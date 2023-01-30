@@ -23,7 +23,7 @@ class TestTodoViewSet(TestCase):
 
     def test_create_guest(self):    
         factory = APIRequestFactory()        
-        request = factory.post('/api/project/', {"id":21,"users":{"00000000-0000-0000-0000-000000000001"},"name":"test_1","url":"https://www.test1.com/test.html"}, format='json')                
+        request = factory.post('/api/project/', {'id':21,'users':{'00000000-0000-0000-0000-000000000001'},'name':'test_1','url':'https://www.test1.com/test.html'}, format='json')                
         view = ProjectModelViewSet.as_view({'post': 'create'})        
         response = view(request)        
         self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
@@ -33,7 +33,7 @@ class TestTodoViewSet(TestCase):
         request_user = factory.post('/api/users/', {'id': '00000000-0000-0000-0000-000000000001',
             'username': 'user33',
             'email': 'user33@local.ru'}, format='json')
-        request = factory.post('/api/project/', {"id":21,"users":{"00000000-0000-0000-0000-000000000001"},"name":"test_1","url":"https://www.test1.com/test.html"}, format='json')
+        request = factory.post('/api/project/', {'id':21,'users':{'00000000-0000-0000-0000-000000000001'},'name':'test_1','url':'https://www.test1.com/test.html'}, format='json')
         admin = User.objects.create_superuser('admin', 'admin@test.com', '123')
         force_authenticate(request_user, admin)
         force_authenticate(request, admin)
@@ -84,20 +84,20 @@ class TestProjectViewSet(APITestCase):
         user1 = User.objects.create(id='00000000-0000-0000-0000-000000000006',
         username='user6',
         email='user6@local.ru')
-        project = Project.objects.create(id=22, name="test_2",url= "https://www.test1.com/test2.html")
+        project = Project.objects.create(id=22, name='test_2',url= 'https://www.test1.com/test2.html')
         project.users.add(user1)
         admin = User.objects.create_superuser('admin', 'admin@test.com', '123')
         self.client.login(username='admin', password='123')
-        response = self.client.put(f'/api/project/{project.id}/', {"users":'00000000-0000-0000-0000-000000000006',"name":"new_test_1","url":"https://www.test1.com/test.html"})
+        response = self.client.put(f'/api/project/{project.id}/', {'users':'00000000-0000-0000-0000-000000000006','name':'new_test_1','url':'https://www.test1.com/test.html'})
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         project = Project.objects.get(id=project.id)
-        self.assertEqual(project.name, "new_test_1")
+        self.assertEqual(project.name, 'new_test_1')
 
     def test_edit_mixer(self):
         todo = mixer.blend(Todo)
         admin = User.objects.create_superuser('admin', 'admin@test.com', '123')
         self.client.login(username='admin', password='123')
-        response = self.client.put(f'/api/todo/{todo.id}/', {"text":"test number 1","project":todo.project_id,"user":todo.user_id})
+        response = self.client.put(f'/api/todo/{todo.id}/', {'text':'test number 1','project':todo.project_id,'user':todo.user_id})
         print(response)
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         todo = Todo.objects.get(id=todo.id)
