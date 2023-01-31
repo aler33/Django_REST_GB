@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from .models import Project, Todo
-from .serializers import ProjectSerializer, TodoSerializer
+from .serializers import ProjectSerializer, TodoSerializer, TodoSerializerBase
 from rest_framework.pagination import LimitOffsetPagination
 from .filters import ProjectFilter, TodoFilter
 from rest_framework import status, permissions
@@ -21,7 +21,8 @@ class ProjectModelViewSet(ModelViewSet):
 
 class TodoModelViewSet(ModelViewSet):
     queryset = Todo.objects.all()
-    permission_classes = [permissions.IsAuthenticated]
+    # permission_classes = [permissions.IsAuthenticated]
+    permission_classes = [permissions.AllowAny]
     serializer_class = TodoSerializer
     pagination_class = TodoLimitOffsetPagination
     filterset_class = TodoFilter    
@@ -34,3 +35,7 @@ class TodoModelViewSet(ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.save()
+    def get_serializer_class(self):
+        if self.request.method in ['GET']:
+            return TodoSerializer
+        return TodoSerializerBase

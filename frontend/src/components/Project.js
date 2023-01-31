@@ -2,7 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const ProjectItem = ({project}) => {
+const ProjectItem = ({project, users}) => {
+    console.log(project.users, users)
     return (
         <tr>
             <td>
@@ -13,13 +14,15 @@ const ProjectItem = ({project}) => {
                 {project.url}
             </td>
             <td>
-                {project.users.map(item => item.username)}
+                {project.users.map(item => users.find((user) => user.id == item).username + " ")}
+                {/* {project.users.map(item => item.username)} */}
             </td>
         </tr>
     )
 }
 
-const TodoProjectList = ({projects}) => {
+const TodoProjectList = ({projects, users}) => {
+    console.log(projects)
     return (
         <div>
             <h2>Projects</h2>
@@ -33,7 +36,7 @@ const TodoProjectList = ({projects}) => {
                 <th>
                     Users
                 </th>
-                {projects.map((project) => <ProjectItem project={project} />)}
+                {projects.map((project) => <ProjectItem project={project} users={users}/>)}
             </table>
         </div>
     )

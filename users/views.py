@@ -5,6 +5,6 @@ from .models import CustomUser
 from .serializers import UsersModelSerializer
 
 
-class UserModelViewSet(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, GenericViewSet):
+class UserModelViewSet(mixins.ListModelMixin, mixins.UpdateModelMixin, mixins.RetrieveModelMixin, mixins.CreateModelMixin, GenericViewSet):
     queryset = CustomUser.objects.all()
     serializer_class = UsersModelSerializer
