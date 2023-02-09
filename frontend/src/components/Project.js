@@ -2,8 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 
 
-const ProjectItem = ({project, users}) => {
-    console.log(project.users, users)
+const ProjectItem = ({project, users, deleteProject}) => {
+    // console.log(project.users, users)
     return (
         <tr>
             <td>
@@ -17,11 +17,12 @@ const ProjectItem = ({project, users}) => {
                 {project.users.map(item => users.find((user) => user.id == item).username + " ")}
                 {/* {project.users.map(item => item.username)} */}
             </td>
+            <td><button onClick={()=>deleteProject(project.id)} type='button'>Delete</button></td>
         </tr>
     )
 }
 
-const TodoProjectList = ({projects, users}) => {
+const TodoProjectList = ({projects, users, deleteProject}) => {
     console.log(projects)
     return (
         <div>
@@ -36,7 +37,8 @@ const TodoProjectList = ({projects, users}) => {
                 <th>
                     Users
                 </th>
-                {projects.map((project) => <ProjectItem project={project} users={users}/>)}
+                <th></th>
+                {projects.map((project) => <ProjectItem project={project} users={users} deleteProject={deleteProject}/>)}
             </table>
         </div>
     )
