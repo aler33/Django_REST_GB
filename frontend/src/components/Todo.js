@@ -1,7 +1,8 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 
-const TodoItem = ({todo}) => {
+const TodoItem = ({todo, deleteTodo}) => {
     return (
         <tr>
             <td>
@@ -11,8 +12,8 @@ const TodoItem = ({todo}) => {
                 {todo.text}
             </td>
             <td>
-                {/* {todo.user.username} */}
-                {todo.user}
+                {todo.user.username}
+                {/* {todo.user} */}
             </td>
             <td>
                 {todo.created}
@@ -21,13 +22,15 @@ const TodoItem = ({todo}) => {
                 {todo.updated}
             </td>
             <td>
-                {todo.is_active}
+                {todo.isActive ? '+' : '-'}
+                {/* {todo.isActive} */}
             </td>
+            <td><button onClick={()=>deleteTodo(todo.id)} type='button'>Delete</button></td>
         </tr>
     )
 }
 
-const TodoList = ({todos}) => {
+const TodoList = ({todos, deleteTodo}) => {
     return (
         <div>
             <h2>Todo</h2>
@@ -48,10 +51,15 @@ const TodoList = ({todos}) => {
                     Updated
                 </th>
                 <th>
-                    Is_active
+                    IsActive
                 </th>
-                {todos.map((todo) => <TodoItem todo={todo} />)}
+                <th></th>
+                {todos.map((todo) => <TodoItem todo={todo} deleteTodo={deleteTodo} />)}
             </table>
+            {/* <Link to='/todo/create'>Create</Link> */}
+            <div class="btn-group" role="group" aria-label="Vertical button group">              
+              <button type="button" ><Link class="btn btn-primary" to='/todo/create'>Create</Link></button>
+            </div>
         </div>
     )
 }

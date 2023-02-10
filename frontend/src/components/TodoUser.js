@@ -12,7 +12,8 @@ const TodoItem = ({todo}) => {
                 {todo.text}
             </td>
             <td>
-                {todo.user}
+                {todo.user.username}
+                {/* {todo.user} */}
             </td>
             <td>
                 {todo.created}
@@ -29,7 +30,7 @@ const TodoItem = ({todo}) => {
 
 const TodoUser = ({items}) => {
     let { id } = useParams();
-    let filtered_items = items.filter((item) => item.user == id)
+    let filtered_items = items.filter((item) => item.user.id == id)
     return (
         <table>
             <tr>

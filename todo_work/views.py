@@ -35,6 +35,7 @@ class TodoModelViewSet(ModelViewSet):
 
     def perform_destroy(self, instance):
         instance.save()
+        
     def get_serializer_class(self):
         if self.request.method in ['GET']:
             return TodoSerializer
