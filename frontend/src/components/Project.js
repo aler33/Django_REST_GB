@@ -1,9 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
+import App from '../App'
+
 
 const ProjectItem = ({project, users, deleteProject}) => {
-    // console.log(project.users, users)
     return (
         <tr>
             <td>
@@ -23,7 +24,6 @@ const ProjectItem = ({project, users, deleteProject}) => {
 }
 
 const TodoProjectList = ({projects, users, deleteProject}) => {
-    console.log(projects)
     return (
         <div>
             <h2>Projects</h2>
@@ -40,7 +40,13 @@ const TodoProjectList = ({projects, users, deleteProject}) => {
                 <th></th>
                 {projects.map((project) => <ProjectItem project={project} users={users} deleteProject={deleteProject}/>)}
             </table>
+            {/* <Link to='/project/create'>Create</Link> */}
+            <div class="btn-group" role="group" aria-label="Vertical button group">              
+                <button type="button" ><Link class="btn btn-primary" to='/project/create'>Create</Link></button>
+                <button type="button" ><Link class="btn btn-primary" to='/project/find'>Find</Link></button>
+            </div>
         </div>
     )
 }
+
 export default TodoProjectList
