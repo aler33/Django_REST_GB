@@ -1,6 +1,6 @@
 # Django_gb
 
-Учебный проект Django REST framework.
+Проект TODO заметок с использованием Django REST framework.
 
 ## Стек
 
